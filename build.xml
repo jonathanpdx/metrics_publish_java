@@ -51,6 +51,7 @@
                 <attribute name="Built-Date" value="${TODAY}"/>
                 <attribute name="Specification-Version" value="${version}"/>
                 <attribute name="Implementation-Version" value="${version} ${TODAY}"/>
+                <attribute name="Main-Class" value="com.newrelic.metrics.publish.Main"/>
             </manifest>
             <fileset dir="${builddir}"/>
             <zipfileset src="${json-simple.jar}"/>

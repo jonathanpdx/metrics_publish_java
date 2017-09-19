@@ -1,2 +1,8 @@
 /bin
 /build
+.idea
+*.iml
+/logs
+/out
+/config/newrelic.json
+/config/plugin.json
