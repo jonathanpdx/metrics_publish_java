@@ -4,6 +4,8 @@
     <property name="builddir" value="build"/>
     <property name="libdir" value="lib"/>
     <property name="distdir" location="dist"/>
+    <property name="configdir" location="config"/>
+    <property name="npidir" location="${distdir}/npi"/>
 
     <property name="version" value="2.0.1"/>
     <property name="jarfile" value="${distdir}/metrics_publish-${version}.jar"/>
@@ -37,6 +39,7 @@
     <target name="clean">
         <echo>Cleaning project...</echo>
         <delete dir="${builddir}"/>
+        <delete dir="${npidir}"/>
         <delete file="${jarfile}"/>
         <echo>Done.</echo>
     </target>
@@ -59,5 +62,17 @@
             <zipfileset src="${logback-core.jar}"/>
             <zipfileset src="${slf4j-api.jar}"/>
         </jar>
+    </target>
+
+    <target name="npi" depends="jar">
+        <mkdir dir="${npidir}"/>
+        <copy file="${jarfile}" tofile="${npidir}/plugin.jar"/>
+        <copy todir="${npidir}/config">
+            <fileset dir="${configdir}">
+                <exclude name="newrelic.json"/>
+                <exclude name="plugin.json"/>
+            </fileset>
+        </copy>
+        <zip basedir="${npidir}" destfile="${distdir}/npi-${version}.zip"/>
     </target>
 </project>
