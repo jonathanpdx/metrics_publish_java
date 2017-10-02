@@ -6,8 +6,9 @@
     <property name="distdir" location="dist"/>
     <property name="configdir" location="config"/>
     <property name="npidir" location="${distdir}/npi"/>
+    <property name="npiRootDir" location="${npidir}/fakePlugin"/>
 
-    <property name="version" value="2.0.1"/>
+    <property name="version" value="2.0.3"/>
     <property name="jarfile" value="${distdir}/metrics_publish-${version}.jar"/>
 
     <property name="json-simple.jar" value="${libdir}/json-simple-1.1.1.jar"/>
@@ -65,9 +66,9 @@
     </target>
 
     <target name="npi" depends="jar">
-        <mkdir dir="${npidir}"/>
-        <copy file="${jarfile}" tofile="${npidir}/plugin.jar"/>
-        <copy todir="${npidir}/config">
+        <mkdir dir="${npiRootDir}"/>
+        <copy file="${jarfile}" tofile="${npiRootDir}/plugin.jar"/>
+        <copy todir="${npiRootDir}/config">
             <fileset dir="${configdir}">
                 <exclude name="newrelic.json"/>
                 <exclude name="plugin.json"/>
